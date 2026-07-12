@@ -1,0 +1,28 @@
+name: Ilk MLOps Avtomatlasdirilmasi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  modeli-yoxla-ve-qur:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodlari bura kocur
+      uses: actions/checkout@v3
+
+    - name: Python-u qurasdir
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Kitabxanalar yukle
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Modeli avtomatik oyret (Train)
+      run: |
+        python train.py
